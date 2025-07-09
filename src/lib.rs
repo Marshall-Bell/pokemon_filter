@@ -45,12 +45,18 @@ pub fn App() -> Element {
     let mut min_weight = use_signal(|| 0.0);
     let mut max_weight = use_signal(|| 1000.0);
     
-    // Add these new state variables near your other filter states
+    // Add these new state variables
     let mut min_gen = use_signal(|| 1);
     let mut max_gen = use_signal(|| 9); // Assuming gen 9 is the latest
     
     // Add this state variable for excluded types
     let mut excluded_types = use_signal(|| Vec::<String>::new());
+
+    // Add these new state variables
+    let mut excluded_pokemon = use_signal(|| Vec::<String>::new());
+    let mut height_comparison = use_signal(|| "any".to_string()); // "any", "taller", or "shorter"
+    let mut weight_comparison = use_signal(|| "any".to_string()); // "any", "heavier", or "lighter"
+    let mut reference_pokemon = use_signal(|| None::<Pokemon>);
 
     // Extract all unique types
     let types = use_memo(move || {
